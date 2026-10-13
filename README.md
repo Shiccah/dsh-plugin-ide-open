@@ -64,19 +64,19 @@ IDEA не найдена / отказ    → клик ведёт себя ров
 **Приложение DeepSeek Harness (Electron) использует профиль `desktop`:**
 
 ```sh
-dsh plugin --profile desktop add git+https://github.com/<ваш-логин>/dsh-plugin-ide-open.git
+dsh plugin --profile desktop add git+https://github.com/Shiccah/dsh-plugin-ide-open.git
 ```
 
 **`dsh web` использует профиль `web`:**
 
 ```sh
-dsh plugin --profile web add git+https://github.com/<ваш-логин>/dsh-plugin-ide-open.git
+dsh plugin --profile web add git+https://github.com/Shiccah/dsh-plugin-ide-open.git
 ```
 
 Локально, из клона:
 
 ```sh
-git clone git@github.com:<ваш-логин>/dsh-plugin-ide-open.git
+git clone git@github.com:Shiccah/dsh-plugin-ide-open.git
 dsh plugin --profile desktop add "$PWD/dsh-plugin-ide-open"
 ```
 
