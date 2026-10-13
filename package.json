@@ -1,0 +1,49 @@
+{
+  "name": "dsh-plugin-ide-open",
+  "version": "1.0.0",
+  "description": "DeepSeek Harness plugin: clicking a file in the Web UI opens it in IntelliJ IDEA (or another JetBrains IDE) instead of the built-in right sidebar.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "bundle",
+    "intellij",
+    "idea",
+    "jetbrains",
+    "ide"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": "^22.19 || >=24"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

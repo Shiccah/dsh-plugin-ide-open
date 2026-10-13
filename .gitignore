@@ -1,0 +1,9 @@
+# Nothing is generated: the host half, the browser half, and the bundle patch are
+# all authored files, so only editor and OS noise is ignored here.
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+.idea/
+.vscode/
+*.tsbuildinfo

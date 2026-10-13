@@ -1,0 +1,17 @@
+# The dsh-plugin-ide-open bundle patch: ONE insert over the profile root.
+#
+# The inserted row names this same package, whose root export is the Cordis
+# plugin, so the bundle and the plugin ship as one package: selecting the bundle
+# is what adds the row, and no profile YAML edit is needed.
+#
+# The row's `config` reaches only the HOST half. The browser half is created by
+# the Web boot with no config, so it learns the host's decisions by asking
+# `GET /ide-open/status` instead (see README, "Конфигурация").
+#
+# A profile that installs this package must not also declare the row by hand —
+# two rows with the same id would both mount. Use the entry form only for the
+# no-install variant, where `name` is an absolute path to index.js (see README).
+
+- insert:
+    - id: ide-open
+      name: "dsh-plugin-ide-open"
