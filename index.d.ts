@@ -55,8 +55,9 @@ export interface Config {
   /**
    * Argument template appended after the launcher's fixed arguments. Each entry
    * is one segment or one group of segments; a group is emitted only when every
-   * `{path}`/`{line}`/`{column}` placeholder inside it has a value.
-   * @default [['--line', '{line}'], ['--column', '{column}'], '{path}']
+   * `{path}`/`{line}`/`{column}` placeholder inside it has a value. The path is
+   * first on purpose: JetBrains 2026.x launchers reject a leading `--line`.
+   * @default ['{path}', ['--line', '{line}'], ['--column', '{column}']]
    */
   args?: (string | string[])[]
   /**

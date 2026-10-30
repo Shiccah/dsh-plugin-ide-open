@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-ide-open",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DeepSeek Harness plugin: clicking a file in the Web UI opens it in IntelliJ IDEA (or another JetBrains IDE) instead of the built-in right sidebar.",
   "keywords": [
     "dsh",

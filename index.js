@@ -38,11 +38,18 @@ export const OPEN_PATH = '/ide-open/open'
 const DEFAULT_APP = 'intellij'
 
 /**
- * Default argument template: optional `--line`/`--column` groups in front of the
- * path. A group disappears entirely when one of its placeholders has no value,
- * so an unknown line never leaves a dangling flag behind.
+ * Default argument template: the path first, then the optional `--line` and
+ * `--column` groups. A group disappears entirely when one of its placeholders
+ * has no value, so an unknown line never leaves a dangling flag behind.
+ *
+ * The order matters. The native launcher of JetBrains 2026.2 only accepts its
+ * own options before the first path argument and rejects a leading `--line`
+ * with `unrecognized option: --line` and exit code 1, before the IDE ever sees
+ * the request. With the path first, the launcher forwards the rest to the
+ * application, whose CommandLineProcessor parses `--line`/`--column` from the
+ * remaining arguments.
  */
-const DEFAULT_ARGS = [['--line', '{line}'], ['--column', '{column}'], '{path}']
+const DEFAULT_ARGS = ['{path}', ['--line', '{line}'], ['--column', '{column}']]
 
 /** Early-failure window per launch, in milliseconds. */
 const DEFAULT_WATCH_MS = 1000

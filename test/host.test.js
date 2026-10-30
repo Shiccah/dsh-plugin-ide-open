@@ -31,7 +31,7 @@ test('resolveOptions applies the documented defaults', () => {
   assert.equal(options.app, 'intellij')
   assert.equal(options.command, undefined)
   assert.equal(options.launchWatchMs, 1000)
-  assert.deepEqual(options.args, [['--line', '{line}'], ['--column', '{column}'], '{path}'])
+  assert.deepEqual(options.args, ['{path}', ['--line', '{line}'], ['--column', '{column}']])
 })
 
 test('resolveOptions accepts every documented field', () => {
@@ -60,8 +60,17 @@ test('resolveOptions rejects malformed configuration', () => {
 
 test('resolveOptions returns a fresh template so one plugin cannot mutate another', () => {
   const first = resolveOptions()
-  first.args[0].push('--injected')
-  assert.deepEqual(resolveOptions().args[0], ['--line', '{line}'])
+  first.args[1].push('--injected')
+  assert.deepEqual(resolveOptions().args[1], ['--line', '{line}'])
+})
+
+test('the default template keeps the path before the line and column flags', () => {
+  // JetBrains 2026.x launchers reject a leading `--line` ("unrecognized option")
+  // and exit non-zero, so the path must be the first argument the IDE sees.
+  const template = resolveOptions().args
+  assert.deepEqual(buildArgs(template, { path: '/a/B.kt', line: 12, column: 4 }),
+    ['/a/B.kt', '--line', '12', '--column', '4'])
+  assert.deepEqual(buildArgs(template, { path: '/a/B.kt' }), ['/a/B.kt'])
 })
 
 test('buildArgs drops an optional group whose placeholder has no value', () => {
